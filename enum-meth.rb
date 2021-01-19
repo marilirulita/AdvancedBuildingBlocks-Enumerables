@@ -3,7 +3,12 @@ module Enumerable
 
   #my_each, a method that is identical to #each but (obviously) does not use #each. You'll need to remember the yield statement. Make sure it returns the same thing as #each as well.
   def my_each
-
+    index = 0
+    while index < self.size
+      yield self[index]
+      index += 1
+    end
+    self
   end
 
   #my_each_with_index in the same way.
