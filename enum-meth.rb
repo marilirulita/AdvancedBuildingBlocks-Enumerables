@@ -37,6 +37,22 @@ module Enumerable
   end
 
   #my_all? (continue as above)
+  def my_all?(*s)
+    a = 0
+    b = true
+    while a < self.size
+      if block_given?
+        unless yield self[a]
+         b = false
+        end
+      else
+        if b == true && self[a].include?(*s) ? b = true : b = false
+        end
+      end
+      a += 1
+    end
+    b
+  end
 
 
   #my_any?
