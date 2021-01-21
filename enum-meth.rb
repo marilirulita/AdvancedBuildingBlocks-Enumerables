@@ -82,7 +82,27 @@ module Enumerable
   end
 
   #my_none?
-
+  def my_none?(s = true)
+    a = 0
+    b = true
+    while a < self.size
+      if block_given?
+        if yield self[a]
+         b = false
+        end
+      else
+        if s.is_a? Class
+          b = false if self[a].class == s
+        else
+          s = s.to_s
+          c = self[a].to_s
+          b = false if c.include?(s)
+        end
+      end
+      a += 1
+    end
+    b
+  end
 
   #my_count
 
