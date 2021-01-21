@@ -131,8 +131,15 @@ module Enumerable
   end
 
   #my_map
-  def my_map
-    
+  def my_map(b = nil)
+    a = []
+    d = self.to_a
+    c = 0
+    while c < self.size
+      a.push(yield d[c])
+      c += 1
+    end
+    a
   end
 
   #my_inject
