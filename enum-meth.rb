@@ -143,6 +143,9 @@ module Enumerable
   end
 
   #my_inject
+  def my_inject
+
+  end
 
 
   #Test my_inject by creating a method called #multiply_els which multiplies all the elements of the array together by using #my_inject, e.g. multiply_els([2,4,5]) #=> 40
