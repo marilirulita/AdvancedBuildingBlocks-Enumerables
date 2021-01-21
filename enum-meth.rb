@@ -46,13 +46,12 @@ module Enumerable
          b = false
         end
       else
-        #s = s.to_s
-        #if b == true && self[a].include?(*s) ? b = true : b = false
-        #end
-        x = self[a].class.superclass #Numeric
-        z = x == s
-        puts "one"
-        puts z
+        if s.is_a? Class
+          b = false if self[a].class.superclass != s
+        else
+          s = s.to_s
+          b = false unless self[a].include?(s)
+        end
       end
       a += 1
     end
