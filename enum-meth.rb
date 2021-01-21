@@ -105,6 +105,30 @@ module Enumerable
   end
 
   #my_count
+  def my_count(a = nil)
+    b = 0
+    c = 0
+    if block_given?
+      while c < self.size
+        if yield self[c]
+          b += 1
+        end
+        c += 1
+      end
+    else
+      if a == nil
+        b = self.size
+      else
+        while c < self.size
+          if self[c] == a
+            b += 1
+          end
+          c += 1
+        end
+      end
+    end
+    b
+  end
 
 
   #my_map
