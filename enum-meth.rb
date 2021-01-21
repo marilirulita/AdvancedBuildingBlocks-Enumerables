@@ -130,9 +130,10 @@ module Enumerable
     b
   end
 
-
   #my_map
-
+  def my_map
+    
+  end
 
   #my_inject
 
