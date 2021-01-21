@@ -37,7 +37,7 @@ module Enumerable
   end
 
   #my_all? (continue as above)
-  def my_all?(*s)
+  def my_all?(s = nil)
     a = 0
     b = true
     while a < self.size
@@ -46,8 +46,13 @@ module Enumerable
          b = false
         end
       else
-        if b == true && self[a].include?(*s) ? b = true : b = false
-        end
+        #s = s.to_s
+        #if b == true && self[a].include?(*s) ? b = true : b = false
+        #end
+        x = self[a].class.superclass #Numeric
+        z = x == s
+        puts "one"
+        puts z
       end
       a += 1
     end
