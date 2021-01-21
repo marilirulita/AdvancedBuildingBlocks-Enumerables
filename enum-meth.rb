@@ -24,7 +24,17 @@ module Enumerable
   end
 
   #my_select in the same way, though you may use #my_each in your definition (but not #each).
-
+  def my_select
+    a = 0
+    new_arr = []
+    while a < self.size
+      if yield self[a]
+        new_arr.push(self[a])
+      end
+      a += 1
+    end
+    new_arr
+  end
 
   #my_all? (continue as above)
 
