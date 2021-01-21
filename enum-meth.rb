@@ -58,9 +58,28 @@ module Enumerable
     b
   end
 
-
   #my_any?
-
+  def my_any?(s = true)
+    a = 0
+    b = false
+    while a < self.size
+      if block_given?
+        if yield self[a]
+         b = true
+        end
+      else
+        if s.is_a? Class
+          b = true if self[a].class == s
+        else
+          s = s.to_s
+          c = self[a].to_s
+          b = true if c.include?(s)
+        end
+      end
+      a += 1
+    end
+    b
+  end
 
   #my_none?
 
