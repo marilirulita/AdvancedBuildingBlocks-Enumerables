@@ -50,19 +50,17 @@ module Enumerable
 
   # my_any?
   def my_any?(par = true)
-    a = 0
     b = false
-    while a < size
+    my_each do |a|
       if block_given?
-        b = true if yield self[a]
+        b = true if yield a
       elsif par.is_a? Class
-        b = true if self[a].class == par
+        b = true if a.class == par
       else
         s = par.to_s
-        c = self[a].to_s
+        c = a.to_s
         b = true if c.include?(s)
       end
-      a += 1
     end
     b
   end
