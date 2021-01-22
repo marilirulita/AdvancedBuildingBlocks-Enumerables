@@ -34,18 +34,16 @@ module Enumerable
 
   # my_all? (continue as above)
   def my_all?(par = nil)
-    a = 0
     b = true
-    while a < size
-      if block_given?
-        b = false unless yield self[a]
-      elsif par.is_a? Class
-        b = false if self[a].class.superclass != par
+    self.my_each do |a|
+      if par.is_a? Class
+        b = false if a.class.superclass != par
+      elsif block_given?
+        b = false unless yield a
       else
         par = par.to_s
-        b = false unless self[a].include?(par)
+        b = false unless a.include?(par)
       end
-      a += 1
     end
     b
   end
