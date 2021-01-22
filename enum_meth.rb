@@ -23,18 +23,14 @@ module Enumerable
 
   # my_select
   def my_select
-    a = 0
-    b = 0
-    new_arr = []
-    while a < size
-      if yield self[a]
-        new_arr.push(self[a])
-        b += 1
+      a = 0
+      new_arr = []
+      while a < size
+        if yield self[a] then new_arr.push(self[a]) end
+        a += 1
       end
-      a += 1
+      new_arr
     end
-    new_arr
-  end
 
   # my_all? (continue as above)
   def my_all?(s = nil)
