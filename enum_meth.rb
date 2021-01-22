@@ -1,19 +1,19 @@
 module Enumerable
-  #my_each, a method that is identical to #each but (obviously) does not use #each. You'll need to remember the yield statement. Make sure it returns the same thing as #each as well.
+  # my_each,
   def my_each
     a = 0
-    while a < self.size
+    while a < size
       yield self[a]
       a += 1
     end
     self
   end
 
-  #my_each_with_index in the same way.
+  # my_each_with_index in the same way.
   def my_each_with_index
     a = 0
     b = 0
-    while a < self.size
+    while a < size
       yield self[a], b
       a += 1
       b = a
@@ -21,11 +21,11 @@ module Enumerable
     self
   end
 
-  #my_select in the same way, though you may use #my_each in your definition (but not #each).
+  # my_select
   def my_select
     a = 0
     new_arr = []
-    while a < self.size
+    while a < size
       if yield self[a]
         new_arr.push(self[a])
       end
@@ -34,14 +34,14 @@ module Enumerable
     new_arr
   end
 
-  #my_all? (continue as above)
+  # my_all? (continue as above)
   def my_all?(s = nil)
     a = 0
     b = true
-    while a < self.size
+    while a < size
       if block_given?
         unless yield self[a]
-         b = false
+          b = false
         end
       else
         if s.is_a? Class
@@ -56,14 +56,14 @@ module Enumerable
     b
   end
 
-  #my_any?
+  # my_any?
   def my_any?(s = true)
     a = 0
     b = false
-    while a < self.size
+    while a < size
       if block_given?
         if yield self[a]
-         b = true
+          b = true
         end
       else
         if s.is_a? Class
@@ -79,14 +79,14 @@ module Enumerable
     b
   end
 
-  #my_none?
+  # my_none?
   def my_none?(s = true)
     a = 0
     b = true
-    while a < self.size
+    while a < size
       if block_given?
         if yield self[a]
-         b = false
+          b = false
         end
       else
         if s.is_a? Class
@@ -102,12 +102,12 @@ module Enumerable
     b
   end
 
-  #my_count
+  # my_count
   def my_count(a = nil)
     b = 0
     c = 0
     if block_given?
-      while c < self.size
+      while c < size
         if yield self[c]
           b += 1
         end
@@ -115,9 +115,9 @@ module Enumerable
       end
     else
       if a == nil
-        b = self.size
+        b = size
       else
-        while c < self.size
+        while c < size
           if self[c] == a
             b += 1
           end
@@ -128,27 +128,27 @@ module Enumerable
     b
   end
 
-  #my_map
+  # my_map
   def my_map(b = nil)
     a = []
     d = self.to_a
     c = 0
-    while c < self.size
+    while c < size
       a.push(yield d[c])
       c += 1
     end
     a
   end
 
-  #my_inject
+  # my_inject
   def my_inject(a = nil)
-    b = self.to_a  #1 2 3 4 5
+    b = self.to_a
     c = 0
     if a == nil
-      a = b[0] # 1
+      a = b[0]
       c = 1
     end
-    while c < self.size
+    while c < size
       x = yield(a, b[c])
       a = x
       c += 1
@@ -157,8 +157,8 @@ module Enumerable
   end
 end
 
-#Test my_inject by creating a method called #multiply_els which multiplies all the elements of the array together by using #my_inject, e.g. multiply_els([2,4,5]) #=> 40
+# Test my_inject
 def multiply_els(m)
-  m.my_inject {|x, l| x * l}
+  m.my_inject { |x, l| x * l }
 end
 puts multiply_els([2, 4, 5])
