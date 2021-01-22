@@ -24,7 +24,6 @@ module Enumerable
   # my_select
   def my_select
     a = 0
-    b = 0
     new_arr = []
     while a < size
       new_arr.push(self[a]) if yield self[a]
