@@ -158,9 +158,11 @@ module Enumerable
     a
   end
 
-
   #Test my_inject by creating a method called #multiply_els which multiplies all the elements of the array together by using #my_inject, e.g. multiply_els([2,4,5]) #=> 40
-
+  def multiply_els(m)
+    m.my_inject {|x, l| x * l}
+  end
+  puts multiply_els([2, 4, 5])
 
   #Modify my_map method to take a proc instead.
 
