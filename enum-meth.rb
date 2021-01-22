@@ -143,8 +143,19 @@ module Enumerable
   end
 
   #my_inject
-  def my_inject
-
+  def my_inject(a = nil)
+    b = self.to_a  #1 2 3 4 5
+    c = 0
+    if a == nil
+      a = b[0] # 1
+      c = 1
+    end
+    while c < self.size
+      x = yield(a, b[c])
+      a = x
+      c += 1
+    end
+    a
   end
 
 
