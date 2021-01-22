@@ -66,24 +66,18 @@ module Enumerable
   end
 
   # my_none?
-  def my_none?(s = true)
-    a = 0
+  def my_none?(par = true)
     b = true
-    while a < size
+    my_each do |a|
       if block_given?
-        if yield self[a]
-          b = false
-        end
+        b = false if yield a
+      elsif par.is_a? Class
+        b = false if a.class == par
       else
-        if s.is_a? Class
-          b = false if self[a].class == s
-        else
-          s = s.to_s
-          c = self[a].to_s
-          b = false if c.include?(s)
-        end
+        s = par.to_s
+        c = a.to_s
+        b = false if c.include?(s)
       end
-      a += 1
     end
     b
   end
