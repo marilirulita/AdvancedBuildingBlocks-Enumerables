@@ -49,22 +49,18 @@ module Enumerable
   end
 
   # my_any?
-  def my_any?(s = true)
+  def my_any?(par = true)
     a = 0
     b = false
     while a < size
       if block_given?
-        if yield self[a]
-          b = true
-        end
+        b = true if yield self[a]
+      elsif par.is_a? Class
+        b = true if self[a].class == par
       else
-        if s.is_a? Class
-          b = true if self[a].class == s
-        else
-          s = s.to_s
-          c = self[a].to_s
-          b = true if c.include?(s)
-        end
+        s = par.to_s
+        c = self[a].to_s
+        b = true if c.include?(s)
       end
       a += 1
     end
