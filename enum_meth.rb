@@ -28,8 +28,10 @@ module Enumerable
     while a < size
       if yield self[a]
         new_arr.push(self[a])
+        a += 1
+      else
+        a += 1
       end
-      a += 1
     end
     new_arr
   end
