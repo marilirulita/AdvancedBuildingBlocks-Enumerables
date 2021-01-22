@@ -35,7 +35,7 @@ module Enumerable
   # my_all? (continue as above)
   def my_all?(par = nil)
     b = true
-    self.my_each do |a|
+    my_each do |a|
       if par.is_a? Class
         b = false if a.class.superclass != par
       elsif block_given?
