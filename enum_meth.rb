@@ -110,20 +110,21 @@ module Enumerable
   end
 
   # my_inject
-  def my_inject(a = nil)
-    b = self.to_a
+  def my_inject(par = nil)
+    b = to_a
     c = 0
-    if a == nil
-      a = b[0]
+    if par.nil?
+      par = b[0]
       c = 1
     end
     while c < size
-      x = yield(a, b[c])
-      a = x
+      x = yield(par, b[c])
+      par = x
       c += 1
     end
-    a
+    par
   end
+
 end
 
 # Test my_inject
