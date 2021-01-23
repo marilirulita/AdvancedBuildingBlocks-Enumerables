@@ -100,9 +100,9 @@ module Enumerable
   end
 
   # my_map
-  def my_map(b = nil)
+  def my_map(*)
     a = []
-    d = self.to_a
+    d = to_a
     c = 0
     while c < size
       a.push(yield d[c])
