@@ -1,10 +1,8 @@
 module Enumerable
   # my_each,
   def my_each
-    a = 0
-    while a < size
+    size.times do |a|
       yield self[a]
-      a += 1
     end
     self
   end
