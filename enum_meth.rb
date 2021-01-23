@@ -126,7 +126,7 @@ module Enumerable
 end
 
 # Test my_inject
-def multiply_els(m)
-  m.my_inject { |x, l| x * l }
+def multiply_els(par)
+  par.my_inject { |x, l| x * l }
 end
 puts multiply_els([2, 4, 5])
