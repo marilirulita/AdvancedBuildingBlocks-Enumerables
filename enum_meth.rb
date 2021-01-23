@@ -83,26 +83,20 @@ module Enumerable
   end
 
   # my_count
-  def my_count(a = nil)
+  def my_count(par = nil)
     b = 0
     c = 0
     if block_given?
       while c < size
-        if yield self[c]
-          b += 1
-        end
+        b += 1 if yield self[c]
         c += 1
       end
+    elsif par.nil?
+      b = size
     else
-      if a == nil
-        b = size
-      else
-        while c < size
-          if self[c] == a
-            b += 1
-          end
-          c += 1
-        end
+      while c < size
+        b += 1 if self[c] == par
+        c += 1
       end
     end
     b
