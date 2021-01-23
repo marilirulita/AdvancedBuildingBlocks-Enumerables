@@ -9,12 +9,8 @@ module Enumerable
 
   # my_each_with_index in the same way.
   def my_each_with_index
-    a = 0
-    b = 0
-    while a < size
-      yield self[a], b
-      a += 1
-      b = a
+    size.times do |a|
+      yield self[a], a
     end
     self
   end
