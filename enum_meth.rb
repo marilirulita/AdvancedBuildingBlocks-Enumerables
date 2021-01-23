@@ -103,10 +103,8 @@ module Enumerable
   def my_map(*)
     a = []
     d = to_a
-    c = 0
-    while c < size
-      a.push(yield d[c])
-      c += 1
+    d.my_each do |b|
+      a.push(yield b)
     end
     a
   end
