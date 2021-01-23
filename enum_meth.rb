@@ -23,11 +23,9 @@ module Enumerable
 
   # my_select
   def my_select
-    a = 0
     new_arr = []
-    while a < size
-      new_arr.push(self[a]) if yield self[a]
-      a += 1
+    my_each do |a|
+      new_arr.push(a) if yield a
     end
     new_arr
   end
@@ -122,7 +120,6 @@ module Enumerable
     end
     par
   end
-
 end
 
 # Test my_inject
