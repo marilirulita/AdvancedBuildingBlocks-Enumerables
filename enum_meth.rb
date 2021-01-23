@@ -85,18 +85,15 @@ module Enumerable
   # my_count
   def my_count(par = nil)
     b = 0
-    c = 0
     if block_given?
-      while c < size
-        b += 1 if yield self[c]
-        c += 1
+      my_each do |a|
+        b += 1 if yield a
       end
     elsif par.nil?
       b = size
     else
-      while c < size
-        b += 1 if self[c] == par
-        c += 1
+      my_each do |a|
+        b += 1 if a == par
       end
     end
     b
