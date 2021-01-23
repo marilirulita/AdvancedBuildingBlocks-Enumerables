@@ -126,4 +126,3 @@ end
 def multiply_els(par)
   par.my_inject { |x, l| x * l }
 end
-puts multiply_els([2, 4, 5])
