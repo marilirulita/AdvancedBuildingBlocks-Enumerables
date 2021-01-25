@@ -9,10 +9,14 @@ module Enumerable
 
   # my_each_with_index in the same way.
   def my_each_with_index
+    if block_given?
     size.times do |a|
       yield self[a], a
     end
     self
+    else
+      return to_enum
+    end
   end
 
   # my_select
