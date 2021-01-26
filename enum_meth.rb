@@ -12,6 +12,7 @@ module Enumerable
   # my_each_with_index in the same way.
   def my_each_with_index
     return to_enum unless block_given?
+
     size.times do |a|
       is_a?(Range) ? yield(min + a, a) : yield(self[a], a)
     end
@@ -32,7 +33,7 @@ module Enumerable
     b = true
     my_each do |a|
       if !par[0].nil?
-        b = false unless par[0] === a
+        return false unless par[0] === a
       elsif block_given?
         b = false unless yield a
       else
