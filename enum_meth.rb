@@ -51,8 +51,8 @@ module Enumerable
         b = true if yield a
       elsif !par[0].nil?
         b = true if par[0] === a
-      else
-        b = true if a
+      elsif a
+        b = true
       end
     end
     b
