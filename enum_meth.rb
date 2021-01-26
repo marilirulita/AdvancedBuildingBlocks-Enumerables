@@ -86,9 +86,9 @@ module Enumerable
     return to_enum unless block_given? || proc_
 
     if proc_
-      my_each {|b| a.push(proc_.call(b))}
+      my_each { |b| a.push(proc_.call(b)) }
     else
-    my_each {|b| a.push(yield b)}
+      my_each { |b| a.push(yield b) }
     end
     a
   end
@@ -101,9 +101,9 @@ module Enumerable
         par1 = nil
       end
       par2.to_sym
-      my_each {|a| par1 = par1.nil? ? par1 = a : par1.send(par2, a)}
+      my_each { |a| par1 = par1.nil? ? par1 = a : par1.send(par2, a) }
     else
-      my_each {|a| par1 = par1.nil? ? par1 = a : yield(par1, a)}
+      my_each { |a| par1 = par1.nil? ? par1 = a : yield(par1, a) }
     end
     par1
   end
