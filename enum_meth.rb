@@ -29,15 +29,18 @@ module Enumerable
   end
 
   # my_all? (continue as above)
-  def my_all?(*args)
-    if !args[0].nil?
-      my_each { |element| return false unless args[0] === element }
-    elsif block_given?
-      my_each { |element| return false unless yield(element) }
-    else
-      my_each { |element| return false unless element }
+  def my_all?(*par)
+    b = true
+    my_each do |a|
+      if !par[0].nil?
+        b = false unless par[0] === a
+      elsif block_given?
+        b = false unless yield a
+      else
+        b = false unless a
+      end
     end
-    true
+    b
   end
 
   # my_any?
