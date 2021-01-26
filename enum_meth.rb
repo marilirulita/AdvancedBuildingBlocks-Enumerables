@@ -29,13 +29,11 @@ module Enumerable
 
   # my_select
   def my_select
-    return to_enum unless block_given?
-    
-    new_arr = []
-    my_each do |a|
-      new_arr.push(a) if yield a
-    end
-    new_arr
+    return to_enum(:my_select) unless block_given?
+
+    a = []
+    my_each { |elm| a << elm if yield(elm) }
+    a
   end
 
   # my_all? (continue as above)
