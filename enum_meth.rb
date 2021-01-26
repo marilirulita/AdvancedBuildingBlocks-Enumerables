@@ -83,16 +83,14 @@ module Enumerable
   # my_map
   def my_map(proc_ = nil)
     a = []
-    if block_given? || proc_
-      if proc_
-        my_each {|b| a.push(proc_.call(b))}
-      else
-      my_each {|b| a.push(yield b)}
-      end
-      a
+    return to_enum unless block_given? || proc_
+
+    if proc_
+      my_each {|b| a.push(proc_.call(b))}
     else
-      return to_enum
+    my_each {|b| a.push(yield b)}
     end
+    a
   end
 
   # my_inject
