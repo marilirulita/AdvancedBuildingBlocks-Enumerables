@@ -111,8 +111,6 @@ module Enumerable
   end
 end
 
-# rubocop:enable Metrics/CyclomaticComplexity
-# rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Style/CaseEquality
 
 # Test my_inject
