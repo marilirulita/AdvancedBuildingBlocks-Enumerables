@@ -100,14 +100,15 @@ module Enumerable
   end
 
   # my_map
-  def my_map(*)
+  def my_map(proc_ = nil)
     a = []
-    d = to_a
-    if block_given?
-    d.my_each do |b|
-      a.push(yield b)
-    end
-    a
+    if block_given? || proc_
+      if proc_
+        my_each {|b| a.push(proc_.call(b))}
+      else
+      my_each {|b| a.push(yield b)}
+      end
+      a
     else
       return to_enum
     end
