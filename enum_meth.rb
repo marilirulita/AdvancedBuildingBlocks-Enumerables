@@ -23,6 +23,8 @@ module Enumerable
 
   # my_select
   def my_select
+    return to_enum unless block_given?
+    
     new_arr = []
     my_each do |a|
       new_arr.push(a) if yield a
