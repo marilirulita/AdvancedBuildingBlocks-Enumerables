@@ -1,30 +1,35 @@
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/PerceivedComplexity
 # rubocop:disable Style/CaseEquality
 
 module Enumerable
   # my_each,
   def my_each
-    return to_enum unless block_given?
-
-    size.times do |a|
-      is_a?(Range) ? yield(min + a) : yield(self[a])
+    if block_given?
+      size.times do |elm|
+        is_a?(Range) ? yield(min + elm) : yield(self[elm])
+      end
+      self
+    else
+      to_enum
     end
-    self
   end
 
   # my_each_with_index in the same way.
   def my_each_with_index
-    return to_enum unless block_given?
-
-    size.times do |a|
-      is_a?(Range) ? yield(min + a, a) : yield(self[a], a)
+    if block_given?
+      size.times do |elm|
+        is_a?(Range) ? yield(min + elm, elm) : yield(self[elm], elm)
+      end
+      self
+    else
+      to_enum
     end
-    self
   end
 
   # my_select
   def my_select
     return to_enum unless block_given?
-    
     new_arr = []
     my_each do |a|
       new_arr.push(a) if yield a
@@ -99,6 +104,8 @@ module Enumerable
 
   # my_inject
   def my_inject(par1 = nil, par2 = nil)
+    return raise LocalJumpError, 'Expecting a block or any argument' if !block_given? && par1.nil? && par2.nil?
+
     if !block_given?
       if par2.nil?
         par2 = par1
@@ -113,6 +120,8 @@ module Enumerable
   end
 end
 
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Style/CaseEquality
 
 # Test my_inject
