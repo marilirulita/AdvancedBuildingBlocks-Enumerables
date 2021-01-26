@@ -1,5 +1,3 @@
-# rubocop:disable Metrics/CyclomaticComplexity
-# rubocop:disable Metrics/PerceivedComplexity
 # rubocop:disable Style/CaseEquality
 
 module Enumerable
