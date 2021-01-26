@@ -11,14 +11,11 @@ module Enumerable
 
   # my_each_with_index in the same way.
   def my_each_with_index
-    if block_given?
+    return to_enum unless block_given?
     size.times do |a|
       is_a?(Range) ? yield(min + a, a) : yield(self[a], a)
     end
     self
-    else
-      return to_enum
-    end
   end
 
   # my_select
