@@ -103,10 +103,14 @@ module Enumerable
   def my_map(*)
     a = []
     d = to_a
+    if block_given?
     d.my_each do |b|
       a.push(yield b)
     end
     a
+    else
+      return to_enum
+    end
   end
 
   # my_inject
