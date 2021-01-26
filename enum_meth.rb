@@ -30,17 +30,16 @@ module Enumerable
 
   # my_all? (continue as above)
   def my_all?(*par)
-    b = true
     my_each do |a|
       if !par[0].nil?
         return false unless par[0] === a
       elsif block_given?
-        b = false unless yield a
+        return false unless yield a
       else
-        b = false unless a
+        return false unless a
       end
     end
-    b
+    true
   end
 
   # my_any?
