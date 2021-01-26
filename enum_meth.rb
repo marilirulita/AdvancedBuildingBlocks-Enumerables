@@ -114,17 +114,18 @@ module Enumerable
   end
 
   # my_inject
-  def my_inject(par = nil)
-    b = to_a
-    b.my_each do |a|
-      if par.nil?
-        par = a
-      else
-        x = yield(par, a)
-        par = x
+  def my_inject(par1 = nil, par2 = nil)
+    if !block_given?
+      if par2.nil?
+        par2 = par1
+        par1 = nil
       end
+      par2.to_sym
+      my_each {|a| par1 = par1.nil? ? par1 = a : par1.send(par2, a)}
+    else
+      my_each {|a| par1 = par1.nil? ? par1 = a : yield(par1, a)}
     end
-    par
+    par1
   end
 end
 
