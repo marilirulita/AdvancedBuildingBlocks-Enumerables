@@ -49,37 +49,23 @@ module Enumerable
   end
 
   # my_any?
-  def my_any?(par = true)
+  def my_any?(*par)
     b = false
     my_each do |a|
       if block_given?
         b = true if yield a
-      elsif par.is_a? Class
-        b = true if a.class == par
+      elsif !par[0].nil?
+        b = true if par[0] === a
       else
-        s = par.to_s
-        c = a.to_s
-        b = true if c.include?(s)
+        b = true if a
       end
     end
     b
   end
 
   # my_none?
-  def my_none?(par = true)
-    b = true
-    my_each do |a|
-      if block_given?
-        b = false if yield a
-      elsif par.is_a? Class
-        b = false if a.class == par
-      else
-        s = par.to_s
-        c = a.to_s
-        b = false if c.include?(s)
-      end
-    end
-    b
+  def my_none?(par = nil, &block)
+    !my_any?(par, &block)
   end
 
   # my_count
