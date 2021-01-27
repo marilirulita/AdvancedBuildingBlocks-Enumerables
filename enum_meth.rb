@@ -5,26 +5,24 @@
 module Enumerable
   # my_each,
   def my_each
-    if block_given?
-      size.times do |elm|
-        is_a?(Range) ? yield(min + elm) : yield(self[elm])
-      end
-      self
-    else
-      to_enum
+    return to_enum unless block_given?
+
+    m = to_a
+    size.times do |a|
+      yield m[a]
     end
+    self
   end
 
   # my_each_with_index in the same way.
   def my_each_with_index
-    if block_given?
-      size.times do |elm|
-        is_a?(Range) ? yield(min + elm, elm) : yield(self[elm], elm)
-      end
-      self
-    else
-      to_enum
+    return to_enum unless block_given?
+
+    m = to_a
+    size.times do |a|
+      yield m[a], a
     end
+    self
   end
 
   # my_select
