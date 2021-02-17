@@ -33,13 +33,6 @@ describe Enumerable do
     end
   end
 
-  # %w[ant bear cat].all? { |word| word.length >= 3 } #=> true
-  %w[ant bear cat].all? { |word| word.length >= 4 } #=> false
-%w[ant bear cat].all?(/t/)                        #=> false
-[1, 2i, 3.14].all?(Numeric)                       #=> true
-[nil, true, 99].all?                              #=> false
-[].all?                                           #=> true
-
   describe "#my_all?" do
     it "returns true if each element in given array is greater than 3" do
       expect(array.my_all? { |word| word.length >= 3 }).to eql(true)
@@ -58,6 +51,25 @@ describe Enumerable do
     end
     it "returns true if array is empty" do
       expect([].my_all?).to eql(true)
+    end
+  end
+
+  %w[ant bear cat].any? { |word| word.length >= 3 } #=> true
+%w[ant bear cat].any? { |word| word.length >= 4 } #=> true
+%w[ant bear cat].any?(/d/)                        #=> false
+[nil, true, 99].any?(Integer)                     #=> true
+[nil, true, 99].any?                              #=> true
+[].any?                                           #=> false
+
+  describe "#my_any?" do
+    it "returns true if any element in given array is greater than 3" do
+      expect(array.my_any? { |word| word.length >= 3 }).to eql(true)
+    end
+    it "does not returns true if no element in given array is greater than 6" do
+      expect(array.my_any? { |word| word.length >= 6 }).not_to eql(true)
+    end
+    it "returns false if no element in array satisfy regex" do
+      expect(array.my_any? (/z/) ).to eql(false)
     end
   end
 end
