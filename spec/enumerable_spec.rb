@@ -132,6 +132,43 @@ describe Enumerable do
     it "does not returns an array with different length" do
       expect(num_array2.my_map { "cat" }).not_to eql(["cat", "cat", "cat"])
     end
-end
+  end
+
+  describe "#my_inject" do
+    it "return the sum of array elements" do
+      expect(num_array.my_inject(:+)).to eql(9)
+    end
+    it "does not return a number different from sum of array elements" do
+      expect(num_array.my_inject(:+)).not_to eql(45)
+    end
+    it "return the sum of array elements given a block" do
+      expect(num_array.my_inject { |sum, n| sum + n }).to eql(9)
+    end
+    it "does not return a number different from sum of array elements given a block" do
+      expect(num_array.my_inject { |sum, n| sum + n }).not_to eql(45)
+    end
+    it "return the product of array elements" do
+      expect(num_array.my_inject(1, :*)).to eql(16)
+    end
+    it "does not return a number different from product of array elements" do
+      expect(num_array.my_inject(1, :*)).not_to eql(40)
+    end
+    it "return the product of array elements givin a block" do
+      expect(num_array.my_inject(1) { |product, n| product * n }).to eql(16)
+    end
+    it "does not return a number different from product of array elements givin a block" do
+      expect(num_array.my_inject(1) { |product, n| product * n }).not_to eql(40)
+    end
+    it "return the longest word in array" do
+      expect(array.my_inject do |memo, word|
+        memo.length > word.length ? memo : word
+     end).to eql("Sofia")
+    end
+    it "does not return a word different from the longest word in array" do
+      expect(array.my_inject do |memo, word|
+        memo.length > word.length ? memo : word
+     end).not_to eql("Dany")
+    end
+  end
 end
 
