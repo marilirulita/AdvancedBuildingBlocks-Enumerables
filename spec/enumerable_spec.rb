@@ -103,8 +103,23 @@ ary.count(2)            #=> 2
 ary.count{ |x| x%2==0 } #=> 3
 
   describe "#my_count" do
-    it "" do
+    it "returns the number of elements in the array" do
       expect(num_array.my_count).to eql(4)
+    end
+    it "does not return a number different from the number of elements in the array" do
+      expect(num_array.my_count).not_to eql(5)
+    end
+    it "returns the number of elements that match the value passed" do
+      expect(num_array.my_count(2)).to eql(2)
+    end
+    it "does not return wrong number of elements that match the value passed" do
+      expect(num_array.my_count(2)).not_to eql(3)
+    end
+    it "returns all the number of even numbers in the array" do
+      expect(num_array.my_count { |x| x%2==0 }).to eql(3)
+    end
+    it "does not return a wrong number of even numbers in the array" do
+      expect(num_array.my_count { |x| x%2==0 }).not_to eql(4)
     end
   end
 end
