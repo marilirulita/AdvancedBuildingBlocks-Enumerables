@@ -71,6 +71,15 @@ describe Enumerable do
     it "returns false if no element in array satisfy regex" do
       expect(array.my_any? (/z/) ).to eql(false)
     end
+    it "does not return true if array is not made of integers" do
+      expect(array.my_any? (Integer) ).not_to eql(true)
+    end
+    it "does not return false if any element in array is truthy" do
+      expect([nil, true, 99].my_any?).not_to eql(false)
+    end
+    it "returns false if array is empty" do
+      expect([].my_any?).to eql(false)
+    end
   end
 end
 
