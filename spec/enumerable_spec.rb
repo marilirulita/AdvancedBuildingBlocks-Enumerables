@@ -3,6 +3,7 @@ require './enum_meth'
 describe Enumerable do
   let(:array) {["Mar", "Dany", "Sofia"]}
   let(:num_array) {[1, 2, 4, 2]}
+  let(:num_array2) {[1, 2, 3, 4]}
 
   describe "#my_each" do
     it "return each element given in the array" do
@@ -97,11 +98,6 @@ describe Enumerable do
     end
   end
 
-  ary = [1, 2, 4, 2]
-ary.count               #=> 4
-ary.count(2)            #=> 2
-ary.count{ |x| x%2==0 } #=> 3
-
   describe "#my_count" do
     it "returns the number of elements in the array" do
       expect(num_array.my_count).to eql(4)
@@ -122,5 +118,20 @@ ary.count{ |x| x%2==0 } #=> 3
       expect(num_array.my_count { |x| x%2==0 }).not_to eql(4)
     end
   end
+
+  describe "#my_map" do
+    it "returns each element square" do
+      expect(num_array2.my_map { |i| i*i }).to eql([1, 4, 9, 16])
+    end
+    it "does not returns the same elements" do
+      expect(num_array2.my_map { |i| i*i }).not_to eql([1, 2, 3, 4])
+    end
+    it "returns an array of the given string" do
+      expect(num_array2.my_map { "cat" }).to eql(["cat", "cat", "cat", "cat"])
+    end
+    it "does not returns an array with different length" do
+      expect(num_array2.my_map { "cat" }).not_to eql(["cat", "cat", "cat"])
+    end
+end
 end
 
