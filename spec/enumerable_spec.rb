@@ -11,7 +11,7 @@ describe Enumerable do
     end
 
     it 'if any block passed in returns an enumerable' do
-      expect(array.my_each) == (array.to_enum)
+      expect(array.my_each) == array.to_enum
     end
   end
 
@@ -21,7 +21,7 @@ describe Enumerable do
     end
 
     it 'if any block passed in returns an enumerable' do
-      expect(array.my_each_with_index) == (array.to_enum)
+      expect(array.my_each_with_index) == array.to_enum
     end
   end
 
