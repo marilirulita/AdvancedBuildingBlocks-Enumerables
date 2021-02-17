@@ -34,10 +34,30 @@ describe Enumerable do
   end
 
   # %w[ant bear cat].all? { |word| word.length >= 3 } #=> true
+  %w[ant bear cat].all? { |word| word.length >= 4 } #=> false
+%w[ant bear cat].all?(/t/)                        #=> false
+[1, 2i, 3.14].all?(Numeric)                       #=> true
+[nil, true, 99].all?                              #=> false
+[].all?                                           #=> true
 
   describe "#my_all?" do
-    it "" do
-      expect(array.my_all { |word| word.length >= 3 }).to eql(true)
+    it "returns true if each element in given array is greater than 3" do
+      expect(array.my_all? { |word| word.length >= 3 }).to eql(true)
+    end
+    it "does not returns true if any element in given array is greater than 4" do
+      expect(array.my_all? { |word| word.length >= 4 }).not_to eql(true)
+    end
+    it "returns false if atleast one element in array not satisfy regex" do
+      expect(array.my_all? (/y/) ).to eql(false)
+    end
+    it "does not return true if array is not made of numbers" do
+      expect(array.my_all? (Numeric) ).not_to eql(true)
+    end
+    it "returns false if array contains nil" do
+      expect([nil, true, 99].my_all?).to eql(false)
+    end
+    it "returns true if array is empty" do
+      expect([].my_all?).to eql(true)
     end
   end
 end
