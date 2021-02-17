@@ -125,6 +125,3 @@ end
 def multiply_els(par)
   par.my_inject { |x, l| x * l }
 end
-
-some = ["Mar", "Dany", "Sofia"]
-some.my_each_with_index {|e, i| p i if e == "Dany"}
