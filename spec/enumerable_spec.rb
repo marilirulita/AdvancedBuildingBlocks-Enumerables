@@ -2,6 +2,7 @@ require './enum_meth'
 
 describe Enumerable do
   let(:array) {["Mar", "Dany", "Sofia"]}
+  let(:num_array) {[1, 2, 4, 2]}
 
   describe "#my_each" do
     it "return each element given in the array" do
@@ -75,15 +76,6 @@ describe Enumerable do
     end
   end
 
-  %w{ant bear cat}.none? { |word| word.length == 5 } #=> true
-%w{ant bear cat}.none? { |word| word.length >= 4 } #=> false
-%w{ant bear cat}.none?(/d/)                        #=> true
-[1, 3.14, 42].none?(Float)                         #=> false
-[].none?                                           #=> true
-[nil].none?                                        #=> true
-[nil, false].none?                                 #=> true
-[nil, false, true].none?                           #=> false
-
   describe "#my_none?" do
     it "returns true if no element in array has a length of 6" do
       expect(array.my_none? { |word| word.length == 6 }).to eql(true)
@@ -102,6 +94,17 @@ describe Enumerable do
     end
     it "does not return true if atleast one elements of array are not falsy" do
       expect([nil, false, true].my_none?).not_to eql(true)
+    end
+  end
+
+  ary = [1, 2, 4, 2]
+ary.count               #=> 4
+ary.count(2)            #=> 2
+ary.count{ |x| x%2==0 } #=> 3
+
+  describe "#my_count" do
+    it "" do
+      expect(num_array.my_count).to eql(4)
     end
   end
 end
