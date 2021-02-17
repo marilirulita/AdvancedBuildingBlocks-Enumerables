@@ -32,8 +32,13 @@ describe Enumerable do
       expect(array.my_select {|e| e != "Mar" }).not_to include("Mar")
     end
   end
-  
+
+  # %w[ant bear cat].all? { |word| word.length >= 3 } #=> true
+
   describe "#my_all?" do
+    it "" do
+      expect(array.my_all { |word| word.length >= 3 }).to eql(true)
+    end
   end
 end
 
