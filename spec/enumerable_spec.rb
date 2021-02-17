@@ -54,13 +54,6 @@ describe Enumerable do
     end
   end
 
-  %w[ant bear cat].any? { |word| word.length >= 3 } #=> true
-%w[ant bear cat].any? { |word| word.length >= 4 } #=> true
-%w[ant bear cat].any?(/d/)                        #=> false
-[nil, true, 99].any?(Integer)                     #=> true
-[nil, true, 99].any?                              #=> true
-[].any?                                           #=> false
-
   describe "#my_any?" do
     it "returns true if any element in given array is greater than 3" do
       expect(array.my_any? { |word| word.length >= 3 }).to eql(true)
@@ -79,6 +72,36 @@ describe Enumerable do
     end
     it "returns false if array is empty" do
       expect([].my_any?).to eql(false)
+    end
+  end
+
+  %w{ant bear cat}.none? { |word| word.length == 5 } #=> true
+%w{ant bear cat}.none? { |word| word.length >= 4 } #=> false
+%w{ant bear cat}.none?(/d/)                        #=> true
+[1, 3.14, 42].none?(Float)                         #=> false
+[].none?                                           #=> true
+[nil].none?                                        #=> true
+[nil, false].none?                                 #=> true
+[nil, false, true].none?                           #=> false
+
+  describe "#my_none?" do
+    it "returns true if no element in array has a length of 6" do
+      expect(array.my_none? { |word| word.length == 6 }).to eql(true)
+    end
+    it "does not returns true if any element in given array is greater than 4" do
+      expect(array.my_none? { |word| word.length >= 4 }).not_to eql(true)
+    end
+    it "returns true if no element in array satisfy regex" do
+      expect(array.my_none? (/z/) ).to eql(true)
+    end
+    it "return true if array is not made of Float" do
+      expect(array.my_none? (Float) ).to eql(true)
+    end
+    it "return true if all elements of array are falsy" do
+      expect([nil, false].my_none?).to eql(true)
+    end
+    it "does not return true if atleast one elements of array are not falsy" do
+      expect([nil, false, true].my_none?).not_to eql(true)
     end
   end
 end
