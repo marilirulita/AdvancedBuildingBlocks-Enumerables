@@ -3,17 +3,6 @@
 # rubocop:disable Style/CaseEquality
 
 module Enumerable
-  # my_each,
-  def my_each
-    return to_enum unless block_given?
-
-    m = to_a
-    size.times do |a|
-      yield m[a]
-    end
-    self
-  end
-
   # my_each_with_index in the same way.
   def my_each_with_index
     return to_enum unless block_given?
